@@ -6,5 +6,7 @@ module Frisky
     EXTENSIONS ||= []
     EXTENSIONS << 'frisky-mongo/models/event'
     EXTENSIONS << 'frisky-mongo/models/person'
+    EXTENSIONS << 'frisky-mongo/models/commit'
+    EXTENSIONS << 'frisky-mongo/models/repository'
   end
 end
