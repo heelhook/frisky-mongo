@@ -14,3 +14,4 @@ end
 gem 'mongo_mapper'
 gem 'mongo'
 gem 'bson_ext'
+gem 'classproxy'

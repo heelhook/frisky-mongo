@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.description  = 'A mongodb backend for frisky data models'
 
   s.add_runtime_dependency "mongo_mapper"
+  s.add_runtime_dependency "classproxy"
 
   s.files        = Dir.glob("lib/**/*") + %w(LICENSE README.md Rakefile)
   s.require_path = 'lib'
