@@ -18,7 +18,7 @@ task :build do
 end
 
 task release: :build do
-  version = ClassProxy::VERSION
+  version = FriskyMongo::VERSION
   system "git tag -a v#{version} -m 'Tagging #{version}'"
   system "git push --tags"
   system "gem push frisky_mongo-#{version}.gem"
