@@ -17,6 +17,9 @@ module Frisky
       key :blog, String
       key :company, String
       key :followers, Integer
+      key :gravatar_id, String
+      key :avatar_url, String
+      key :html_url, String
     end
   end
 end
