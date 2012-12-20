@@ -15,7 +15,7 @@ module Frisky
       key :repository_id, ObjectId
       key :stats, Hash
       key :committer_id, ObjectId
-      key :files, Array
+      key :file_ids, Array
       key :tree, String
       key :date, Time
       key :sha, String
@@ -25,9 +25,10 @@ module Frisky
       belongs_to :repository, class_name: 'Frisky::Model::Repository'
 
       many :parents, in: :parent_ids, class_name: 'Frisky::Model::Commit'
+      many :files, in: :file_ids, class_name: 'Frisky::Model::FileCommit'
 
-      proxy_methods author: lambda { Person.find(author_id) }
-      proxy_methods committer: lambda { Person.find(committer_id) }
+      proxy_methods author: lambda { Person.find(author_id) or raise NotFound }
+      proxy_methods committer: lambda { Person.find(committer_id) or raise NotFound }
       proxy_methods repository: lambda { Repository.find(repository_id) }
 
       def save(*args)
@@ -39,6 +40,7 @@ module Frisky
         self.repository_id    ||= self.repository.id
         self.committer_id     ||= self.committer.id if self.committer
         self.parent_ids        |= self.parents.map(&:id) if self.no_proxy_parents
+        self.file_ids          |= self.files.map(&:id) if self.no_proxy_files
         super(*args)
       end
     end
