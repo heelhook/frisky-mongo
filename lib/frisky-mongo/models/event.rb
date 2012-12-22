@@ -18,7 +18,6 @@ module Frisky
       many :commits, in: :commit_ids, class_name: 'Frisky::Model::Commit'
 
       def self.load_from_hashie(hashie)
-
         e = Event.find(hashie.id)
         e.actor = Person.find(e.actor_id)
         e.repository = Repository.find(e.repository_id)

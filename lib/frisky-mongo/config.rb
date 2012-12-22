@@ -16,5 +16,5 @@ module Frisky
     end
   end
 
-  def mongo; @@mongo; end
+  def self.mongo; @@mongo[@@mongo_database]; end
 end

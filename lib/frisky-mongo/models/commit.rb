@@ -32,13 +32,13 @@ module Frisky
       proxy_methods repository: lambda { Repository.find(repository_id) }
 
       def save(*args)
-        self.author.save if self.author
-        self.repository.save if self.repository
-        self.committer.save if self.committer
+        self.author.save if self.no_proxy_author
+        self.repository.save
+        self.committer.save if self.no_proxy_committer
 
-        self.author_id        ||= self.author.id if self.author
+        self.author_id        ||= self.author.id if self.no_proxy_author
         self.repository_id    ||= self.repository.id
-        self.committer_id     ||= self.committer.id if self.committer
+        self.committer_id     ||= self.committer.id if self.no_proxy_committer
         self.parent_ids        |= self.parents.map(&:id) if self.no_proxy_parents
         self.file_ids          |= self.files.map(&:id) if self.no_proxy_files
         super(*args)

@@ -20,6 +20,12 @@ module Frisky
       key :gravatar_id, String
       key :avatar_url, String
       key :html_url, String
+
+      def self.load_from_raw(raw)
+        model = super(raw)
+        model.save if model.new?
+        model
+      end
     end
   end
 end
