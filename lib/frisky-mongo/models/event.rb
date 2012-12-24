@@ -11,6 +11,7 @@ module Frisky
       key :commit_ids, Array, default: nil
       key :ref, String
       key :head, String
+      key :created_at, String
 
       belongs_to :actor, class_name: 'Frisky::Model::Person'
       belongs_to :repository, class_name: 'Frisky::Model::Repository'
