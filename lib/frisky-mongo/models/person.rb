@@ -3,8 +3,11 @@ module Frisky
     class Person < ProxyBase
       include MongoMapper::Document
 
+      fetch_key :id
+
       primary_fetch do |args|
-        p = Person.where(login: args[:login]).first if args[:login]
+        p = Person.where(_id: args[:id]).first if args[:id]
+        p ||= Person.where(login: args[:login]).first if args[:login]
         p ||= Person.where(email: args[:email]).first if args[:email]
         p or raise NotFound
       end
