@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "mongo_mapper"
   s.add_runtime_dependency "classproxy"
+  s.add_runtime_dependency "bson_ext"
 
   s.files        = Dir.glob("lib/**/*") + %w(LICENSE README.md Rakefile)
   s.require_path = 'lib'
